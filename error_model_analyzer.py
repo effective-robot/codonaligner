@@ -313,11 +313,12 @@ def main():
     # Analyze ONT error model
     error_model = analyze_error_model(ground_truth)
 
-    # Compare all three aligners
+    # Compare all aligners
     aligners = [
         ('output_production.sam', 'Production Codon Aligner'),
         ('output_improved.sam', 'Improved Codon Aligner (Track 1)'),
-        ('output_ultimate.sam', 'Ultimate Codon Aligner (Track 2)')
+        ('output_ultimate.sam', 'Ultimate Codon Aligner (Track 2)'),
+        ('output_learned.sam', 'Learned Codon Aligner (Ground Truth Strategy)')
     ]
 
     all_metrics = {}
