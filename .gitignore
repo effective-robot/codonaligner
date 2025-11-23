@@ -9,6 +9,8 @@ codon_aligner_orf
 run_non_orf_comparison
 codon_aligner_ont_orf_test
 codon_aligner_original_orf_test
+aligner_improved
+aligner_ultimate
 *.o
 *.out
 *.exe
@@ -24,6 +26,11 @@ base_level_accuracy_detailed.txt
 orf_aligner_output.txt
 codon_aligner_*_orf_test.cpp
 codon_aligner_orf_detailed.cpp
+
+# Generated alignment outputs
+output_improved.sam
+output_ultimate.sam
+output_production.sam
 
 # Editor and IDE files
 *.swp
