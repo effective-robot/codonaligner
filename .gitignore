@@ -7,6 +7,8 @@ codon_aligner_ont_metrics
 codon_aligner_original_metrics
 codon_aligner_orf
 run_non_orf_comparison
+codon_aligner_ont_orf_test
+codon_aligner_original_orf_test
 *.o
 *.out
 *.exe
@@ -18,6 +20,10 @@ simulated_ont_reads.fasta
 *_detailed_results.txt
 *_metrics_output.txt
 base_level_accuracy_detailed.txt
+*_orf_results.txt
+orf_aligner_output.txt
+codon_aligner_*_orf_test.cpp
+codon_aligner_orf_detailed.cpp
 
 # Editor and IDE files
 *.swp
