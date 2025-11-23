@@ -1,0 +1,22 @@
+# Compiled binaries
+codon_aligner
+codon_aligner_ont
+codon_aligner_original
+codon_aligner_batch
+*.o
+*.out
+*.exe
+
+# Test conversion files
+simulated_ont_reads.fasta
+
+# Editor and IDE files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
