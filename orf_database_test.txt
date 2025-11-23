@@ -1,0 +1,11 @@
+transcript_id	chr	orf_start	orf_end	strand	frame
+TRANS_001	chr1	0	300	+	0
+TRANS_002	chr1	82	442	+	0
+TRANS_003	chr1	0	270	+	0
+TRANS_004	chr1	194	644	+	0
+TRANS_005	chr1	142	472	+	1
+TRANS_006	chr1	187	577	+	2
+TRANS_007	chr1	284	434	+	0
+TRANS_008	chr1	77	677	+	0
+TRANS_009	chr1	51	351	+	1
+TRANS_010	chr1	299	839	+	2
