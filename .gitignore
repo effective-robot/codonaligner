@@ -3,12 +3,18 @@ codon_aligner
 codon_aligner_ont
 codon_aligner_original
 codon_aligner_batch
+codon_aligner_ont_metrics
+codon_aligner_original_metrics
 *.o
 *.out
 *.exe
 
 # Test conversion files
 simulated_ont_reads.fasta
+
+# Generated evaluation outputs
+*_detailed_results.txt
+*_metrics_output.txt
 
 # Editor and IDE files
 *.swp
