@@ -11,6 +11,7 @@ codon_aligner_ont_orf_test
 codon_aligner_original_orf_test
 aligner_improved
 aligner_ultimate
+aligner_learned
 *.o
 *.out
 *.exe
@@ -31,6 +32,7 @@ codon_aligner_orf_detailed.cpp
 output_improved.sam
 output_ultimate.sam
 output_production.sam
+output_learned.sam
 
 # Editor and IDE files
 *.swp
