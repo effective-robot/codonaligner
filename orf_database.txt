@@ -1,0 +1,2 @@
+transcript_id	chr	orf_start	orf_end	strand	frame
+reference_10kb	chr1	0	10000	+	0
