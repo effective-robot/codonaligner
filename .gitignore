@@ -15,6 +15,7 @@ simulated_ont_reads.fasta
 # Generated evaluation outputs
 *_detailed_results.txt
 *_metrics_output.txt
+base_level_accuracy_detailed.txt
 
 # Editor and IDE files
 *.swp
