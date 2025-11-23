@@ -302,7 +302,7 @@ def identify_failure_modes(ground_truth, alignments):
 
 def main():
     print("\n" + "="*70)
-    print("PHASE 1: DEEP ERROR ANALYSIS & FAILURE MODE IDENTIFICATION")
+    print("COMPREHENSIVE ALIGNER COMPARISON")
     print("="*70)
 
     # Load ground truth
@@ -313,21 +313,28 @@ def main():
     # Analyze ONT error model
     error_model = analyze_error_model(ground_truth)
 
-    # Compare production aligner
-    print("\nLoading production aligner output...")
-    production_alignments = parse_sam_alignment('output_production.sam')
-    print(f"Loaded {len(production_alignments)} production alignments")
+    # Compare all three aligners
+    aligners = [
+        ('output_production.sam', 'Production Codon Aligner'),
+        ('output_improved.sam', 'Improved Codon Aligner (Track 1)'),
+        ('output_ultimate.sam', 'Ultimate Codon Aligner (Track 2)')
+    ]
 
-    production_metrics = compare_aligner_accuracy(
-        ground_truth, production_alignments, "Production Codon Aligner"
-    )
+    all_metrics = {}
+    for sam_file, aligner_name in aligners:
+        try:
+            print(f"\nLoading {aligner_name} output...")
+            alignments = parse_sam_alignment(sam_file)
+            print(f"Loaded {len(alignments)} alignments")
 
-    # Identify failure modes
-    failure_analysis = identify_failure_modes(ground_truth, production_alignments)
+            metrics = compare_aligner_accuracy(ground_truth, alignments, aligner_name)
+            all_metrics[aligner_name] = metrics
+        except FileNotFoundError:
+            print(f"  ⚠️ {sam_file} not found, skipping...")
 
-    # Summary
+    # Summary comparison
     print("\n" + "="*70)
-    print("SUMMARY & KEY INSIGHTS")
+    print("COMPARATIVE SUMMARY")
     print("="*70)
 
     print("\nONT Error Model (Ground Truth):")
@@ -336,23 +343,11 @@ def main():
     print(f"  Deletion rate: {100*error_model['deletion_rate']:.1f}%")
     print(f"  Substitution rate: {100*error_model['substitution_rate']:.1f}%")
 
-    print("\nProduction Aligner Performance:")
-    print(f"  Mapping rate: {100*production_metrics['mapping_rate']:.1f}%")
-    print(f"  Edit distance MAE: {production_metrics['edit_distance_mae']:.1f}")
-    print(f"  Perfect matches: {100*production_metrics['perfect_match_rate']:.1f}%")
-    print(f"  Within ±5: {100*production_metrics['within_5_rate']:.1f}%")
-
-    print("\nKey Problems:")
-    print(f"  1. Low mapping rate ({100*production_metrics['mapping_rate']:.1f}% vs target 95%)")
-    print(f"  2. High edit distance errors (MAE={production_metrics['edit_distance_mae']:.1f})")
-    print(f"  3. {100*failure_analysis['unmapped_rate']:.1f}% unmapped reads")
-    print(f"  4. {100*failure_analysis['over_estimated_rate']:.1f}% over-estimated errors")
-
-    print("\nNext Steps for Algorithm Design:")
-    print("  1. Improve candidate selection (current 54% → target 95%)")
-    print("  2. Reduce edit distance over-estimation")
-    print("  3. Better homopolymer handling")
-    print("  4. Position-dependent error modeling")
+    print("\nAligner Performance Comparison:")
+    print(f"{'Aligner':<40} {'Mapping':<12} {'MAE':<10} {'±5 Acc':<10}")
+    print("-" * 70)
+    for name, metrics in all_metrics.items():
+        print(f"{name:<40} {100*metrics['mapping_rate']:>5.1f}%      {metrics['edit_distance_mae']:>6.1f}    {100*metrics['within_5_rate']:>5.1f}%")
 
     print("\n" + "="*70)
 
