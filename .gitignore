@@ -5,6 +5,8 @@ codon_aligner_original
 codon_aligner_batch
 codon_aligner_ont_metrics
 codon_aligner_original_metrics
+codon_aligner_orf
+run_non_orf_comparison
 *.o
 *.out
 *.exe
